@@ -15,16 +15,22 @@ void draw(SDL_Window *window) {
   ImGui::Text("CPU cores: %d", SDL_GetCPUCount());
   ImGui::Text("RAM: %.2f GB", SDL_GetSystemRAM() / 1024.0f);
 
+  ImGui::Text("CPU Cache size: %d", SDL_GetCPUCacheLineSize());
+
+  char *clipboard = SDL_GetClipboardText();
+  ImGui::Text("Clipboard: %s", clipboard ? clipboard : "Nothing");
+  free(clipboard);
+
   // buttons and most other widgets return true when
   // clicked/edited/activated
 
-  ImGui::SameLine();
-  ImGui::Text("Hello world");
+  // ImGui::SameLine();
+  ImGui::TextColored(ImVec4(1.0f, 0.2f, 0.1f, 1.0f), "Hello world");
 
-  ImGui::Text()
+  ImGui::GetFontSize();
 }
 
-int main(int argc, char *argv[]) {
+int main() {
 
   try {
     Window w("Dear ImGui SDL", 1280, 720);
